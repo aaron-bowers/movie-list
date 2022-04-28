@@ -12,5 +12,4 @@ var MovieList = ({list}) => (
   </ul>
 )
 
-
 export default MovieList;
