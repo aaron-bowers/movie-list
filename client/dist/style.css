@@ -1,9 +1,74 @@
 body {
   font-family: sans-serif, arial;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-li {
-  list-style-type: none; /* Removes bullets */
-  padding: 0;
+.title {
+  text-align: center;
+  font-family: 'Koulen', cursive;
+  font-size: 80px;
+  display: block;
+  margin: 10px auto;
+  border: 5px solid black;
+}
+
+.title:hover {
+  color: white;
+  background-color: black;
+}
+
+.field {
+  font-size: 18px;
+  margin: 0 2px 5px 0;
+  width: 300px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.btn {
+  margin: 0 5px;
+  font-size: 16px;
+}
+
+.watched-list,
+.to-watch {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0;
+  height: 50px;
+  width: 100px;
+}
+
+.movie-list {
+  border: 5px solid black;
   margin: 0;
+  padding: 0;
+}
+
+.movie {
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px 10px;
+  background-color:rgb(159, 204, 244);
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.movie:hover {
+  background-color:rgb(124, 186, 240);
+}
+
+.watched-btn {
+  background-color: rgb(138, 198, 126);
+  border-radius: 5px;
+  float: right;
+}
+
+.watched-btn:hover {
+  color: white;
+  font-weight: bold;
+  background-color: darksalmon;
 }

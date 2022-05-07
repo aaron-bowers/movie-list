@@ -19,6 +19,9 @@ class Input extends React.Component {
   handleClick (event) {
     event.preventDefault();
     this.props.handleAdd(this.state.userInput);
+    this.setState({
+      userInput: ''
+    })
   }
 
   render() {
@@ -30,12 +33,14 @@ class Input extends React.Component {
             value={this.state.userInput}
             placeholder="Add movie title here"
             onChange={this.handleUserInput}
+            className="field"
           />
         </label>
         <input
           type="submit"
           value="Add"
           onClick={this.handleClick}
+          className="add-btn btn"
         />
       </form>
     )

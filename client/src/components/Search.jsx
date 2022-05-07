@@ -6,19 +6,30 @@ class Search extends React.Component {
     this.state = {
       userInput: ''
     }
-    this.handleUserInput = this.handleUserInput.bind(this);
+    this.handleSearchInput = this.handleSearchInput.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
-  handleUserInput (event) {
+  handleSearchInput (event) {
     this.setState({
       userInput: event.target.value
     })
   }
 
-  handleClick (event) {
+  handleClick () {
     event.preventDefault();
-    this.props.handleGo(this.state.userInput);
+    this.props.handleSearch(this.state.userInput);
+    this.props.handleSearching(true);
+  }
+
+  handleClear () {
+    event.preventDefault();
+    this.setState({
+      userInput: ''
+    })
+    this.props.handleSearch('');
+    this.props.handleSearching(false);
   }
 
   render() {
@@ -29,13 +40,21 @@ class Search extends React.Component {
             type="text"
             value={this.state.userInput}
             placeholder="Search..."
-            onChange={this.handleUserInput}
+            onChange={this.handleSearchInput}
+            className="field"
           />
         </label>
         <input
           type="submit"
           value="Go!"
           onClick={this.handleClick}
+          className="go-btn btn"
+        />
+        <input
+          type="submit"
+          value="Clear Search"
+          onClick={this.handleClear}
+          className="clear-btn btn"
         />
       </form>
     )
