@@ -8,4 +8,4 @@ router.post('/movies', controller.movies.post);
 // router.get('/users', controller.users.get);
 // router.post('/users', controller.users.post);
 
-module.exports = router;
+module.exports.router = router;

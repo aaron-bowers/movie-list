@@ -17,13 +17,13 @@ class Search extends React.Component {
     })
   }
 
-  handleClick () {
+  handleClick (event) {
     event.preventDefault();
     this.props.handleSearch(this.state.userInput);
     this.props.handleSearching(true);
   }
 
-  handleClear () {
+  handleClear (event) {
     event.preventDefault();
     this.setState({
       userInput: ''

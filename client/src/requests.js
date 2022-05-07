@@ -1,7 +1,7 @@
-const axios = require('axios');
+const axios = require('axios').default;
 let App = require('/components/App.jsx');
 
-const API_URL = 'https://127.0.0.1:3000/classes/';
+const API_URL = 'https://127.0.0.1:3000/';
 
 axios.get(`${API_URL}/movies`)
   .then(response => {
