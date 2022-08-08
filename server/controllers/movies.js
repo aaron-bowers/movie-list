@@ -1,32 +1,29 @@
-var models = require('../models');
+var models = require('../models/movies.js');
 
 module.exports = {
   get: function (req, res) {
-    models.movies.getAll((err, movies) => {
+    models.getAll((err, movies) => {
       if (err) {
-        // console.log(err);
-        let statusCode = 404;
-        res.writeHead(statusCode);
+        console.log(err);
+        res.status(404).send('Oops, didn\'t get anything');
       } else {
-        let statusCode = 200;
-        res.writeHead(statusCode); // not needed using .json below
-        res.write(JSON.stringify(movies)); // switch out with res.json(data);
+        res.json(movies);
       }
-      res.end();
     });
-  }, // a function which handles a get request for all movies
+  },
+
   post: function (req, res) {
-    // console.log(req.body);
-    let postData = [req.body.title, req.body.description];
-    models.movies.create(postData, (err, data) => {
+    console.log('req ', req);
+    // let postData = [req.body];
+    // console.log(postData);
+    models.create(req.body, (err, movie) => {
       if (err) {
         // console.log(err);
-        throw Error(err);
+        res.status(400).send('Unable to add movie data');
       } else {
         // console.log(data);
-        res.writeHead(200);
-        res.end();
+        res.json(movie);
       }
     });
-  } // a function which handles posting a message to the database
+  }
 };

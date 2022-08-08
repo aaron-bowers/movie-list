@@ -34,6 +34,7 @@ class Input extends React.Component {
             placeholder="Add movie title here"
             onChange={this.handleUserInput}
             className="field"
+            required
           />
         </label>
         <input

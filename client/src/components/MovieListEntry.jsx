@@ -11,18 +11,16 @@ class MovieListEntry extends React.Component {
   }
 
   handleWatchedClick (callback) {
-    console.log(this.state.watched);
     this.setState({
       watched: !this.state.watched
     })
-    // this.props.handleWatched()
-    // callback(this.state.watched);
   }
 
   render() {
     return (
       <div className='movie'>
-        {this.props.movie}
+        {this.props.movie.title}
+        <p>{this.props.movie.description}</p>
         <button
           type="button"
           className="watched-btn"

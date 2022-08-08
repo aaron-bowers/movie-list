@@ -2,13 +2,14 @@ import React from 'react';
 import Search from './Search.jsx';
 import MovieList from './MovieList.jsx';
 import Input from './Input.jsx';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       inputValue: '',
-      movieList: ['batman and robin', 'dude, wheres my car', 'doctor strange'],
+      movieList: [],
       sorted: [],
       watched: [],
       searching: false
@@ -16,17 +17,32 @@ class App extends React.Component {
     this.handleAdd = this.handleAdd.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSearching = this.handleSearching.bind(this);
-    this.handleWatched = this.handleWatched.bind(this);
-    this.handleToWatch = this.handleToWatch.bind(this);
+  }
+  componentDidMount() {
+    axios.get(`/movies`)
+      .then(response => {
+        // console.log(response.data);
+        this.setState({
+          movieList: response.data
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
-  handleAdd (addedMovie) {
-    const enlargedList = this.state.movieList.slice();
-    if (addedMovie) {
-      enlargedList.push(addedMovie);
-      this.setState({
-        movieList: enlargedList
+  handleAdd (movie) {
+    // console.log('movie title', movie, );
+    if (movie) {
+      axios.post('/movies', {
+        title: movie,
       })
+        .then(response => {
+          console.log('movie added');
+        })
+        .catch(err => {
+          console.log(err);
+        })
     }
   }
 
@@ -54,14 +70,6 @@ class App extends React.Component {
     }
   }
 
-  handleWatched(watchedMovies) {
-
-  }
-
-  handleToWatch(moviesToWatch) {
-
-  }
-
   render() {
     return (
       <div>
@@ -74,13 +82,11 @@ class App extends React.Component {
           handleSearching={this.handleSearching}
         />
         <button
-          className="watched-list"
-          handleWatched={this.handleWatched}>
+          className="watched-list">
           Watched
         </button>
         <button
-          className="to-watch"
-          handleToWatch={this.handleToWatch}>
+          className="to-watch">
           To Watch
         </button>
         {this.state.searching ?
